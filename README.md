@@ -11,7 +11,7 @@ Integration test for the [Trace4Cats] modules and [Jaeger].
 Add it to your `build.sbt`:
 
 ```scala
-"io.janstenpickle" %% "trace4cats-jaeger-integration-test" % "<version>"
+"io.janstenpickle" %% "trace4cats-jaeger-integration-test" % "0.12.0-RC2"
 ```
 
 ## Contributing
