@@ -2,7 +2,6 @@ package io.janstenpickle.trace4cats.test.jaeger
 
 import cats.data.NonEmptyList
 import io.circe.{Decoder, DecodingFailure}
-import io.circe.generic.auto._
 import io.circe.generic.semiauto._
 
 case class JaegerTraceResponse(data: NonEmptyList[JaegerTrace])
@@ -64,3 +63,7 @@ object JaegerTag {
 }
 
 case class JaegerReference(refType: String, traceID: String, spanID: String)
+
+object JaegerReference {
+  implicit val decoder: Decoder[JaegerReference] = deriveDecoder
+}
