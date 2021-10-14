@@ -107,10 +107,8 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
     batch: Batch[Chunk],
     expectedResponse: List[JaegerTraceResponse]
   ): Assertion = {
-    val res = {
-      Resource
-        .eval(IO.executionContext)
-        .flatMap(BlazeClientBuilder[IO](_).resource)
+    val res =
+      BlazeClientBuilder[IO].resource
         .use { client =>
           exporter.use(_.exportBatch(batch)) >> IO.sleep(1.second) >> batch.spans
             .map(_.context.traceId)
@@ -130,7 +128,6 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
             )
           )
         )
-    }
 
     assert(res === expectedResponse)
   }
@@ -144,9 +141,7 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
     val batch = Batch(List(span.build(process)))
 
     val res =
-      Resource
-        .eval(IO.executionContext)
-        .flatMap(BlazeClientBuilder[IO](_).resource)
+      BlazeClientBuilder[IO].resource
         .use { client =>
           completer.use(_.complete(span)) >> IO.sleep(1.second) >> batch.spans
             .map(_.context.traceId)
