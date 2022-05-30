@@ -1,22 +1,22 @@
-package io.janstenpickle.trace4cats.test.jaeger
+package trace4cats.test.jaeger
 
 import java.util.concurrent.TimeUnit
 
 import cats.data.NonEmptyList
-import cats.effect.{IO, Resource}
 import cats.effect.unsafe.implicits.global
+import cats.effect.{IO, Resource}
 import cats.implicits._
 import fs2.Chunk
 import io.circe.generic.auto._
-import io.janstenpickle.trace4cats.kernel.{SpanCompleter, SpanExporter}
-import io.janstenpickle.trace4cats.model._
-import io.janstenpickle.trace4cats.test.ArbitraryInstances
-import org.http4s.circe.CirceEntityCodec._
 import org.http4s.blaze.client.BlazeClientBuilder
+import org.http4s.circe.CirceEntityCodec._
 import org.scalacheck.Shrink
 import org.scalatest.Assertion
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import trace4cats.kernel.{SpanCompleter, SpanExporter}
+import trace4cats.model._
+import trace4cats.test.ArbitraryInstances
 
 import scala.concurrent.duration._
 

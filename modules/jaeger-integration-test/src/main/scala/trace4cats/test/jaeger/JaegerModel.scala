@@ -1,8 +1,8 @@
-package io.janstenpickle.trace4cats.test.jaeger
+package trace4cats.test.jaeger
 
 import cats.data.NonEmptyList
-import io.circe.{Decoder, DecodingFailure}
 import io.circe.generic.semiauto._
+import io.circe.{Decoder, DecodingFailure}
 
 case class JaegerTraceResponse(data: NonEmptyList[JaegerTrace])
 
