@@ -9,7 +9,10 @@ object Dependencies {
     val trace4cats = "0.13.1+114-c5a4b269"
 
     val circe = "0.14.2"
-    val http4s = "0.23.12"
+    val http4s = "0.23.14"
+
+    val http4sBlaze = "0.23.12"
+
     val logback = "1.2.11"
 
     val kindProjector = "0.13.2"
@@ -21,7 +24,7 @@ object Dependencies {
 
   lazy val circeGeneric = "io.circe"        %% "circe-generic"       % Versions.circe
   lazy val http4sCirce = "org.http4s"       %% "http4s-circe"        % Versions.http4s
-  lazy val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % Versions.http4s
+  lazy val http4sBlazeClient = "org.http4s" %% "http4s-blaze-client" % Versions.http4sBlaze
   lazy val logback = "ch.qos.logback"        % "logback-classic"     % Versions.logback
 
   lazy val kindProjector = ("org.typelevel" % "kind-projector"     % Versions.kindProjector).cross(CrossVersion.full)
