@@ -13,7 +13,7 @@ object Dependencies {
 
     val http4sBlaze = "0.23.12"
 
-    val logback = "1.2.11"
+    val logback = "1.4.5"
 
     val kindProjector = "0.13.2"
     val betterMonadicFor = "0.3.1"
