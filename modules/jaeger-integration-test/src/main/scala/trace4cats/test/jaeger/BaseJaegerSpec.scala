@@ -1,6 +1,7 @@
 package trace4cats.test.jaeger
 
-import java.util.concurrent.TimeUnit
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import cats.data.NonEmptyList
 import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
@@ -17,8 +18,6 @@ import trace4cats.kernel.{SpanCompleter, SpanExporter}
 import trace4cats.model._
 import trace4cats.test.ArbitraryInstances
 
-import java.time.Instant
-import java.time.temporal.ChronoUnit
 import scala.concurrent.duration._
 
 trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks with ArbitraryInstances {
