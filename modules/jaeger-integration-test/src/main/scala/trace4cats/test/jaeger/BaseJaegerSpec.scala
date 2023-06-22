@@ -1,7 +1,7 @@
 package trace4cats.test.jaeger
 
-import java.util.concurrent.TimeUnit
-
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import cats.data.NonEmptyList
 import cats.effect.unsafe.implicits.global
 import cats.effect.{IO, Resource}
@@ -77,13 +77,15 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
                       case _ => List.empty[JaegerReference]
                     }
 
+                    val startMicros = ChronoUnit.MICROS.between(Instant.EPOCH, span.start)
+                    val durationMicros = ChronoUnit.MICROS.between(span.start, span.end)
+
                     JaegerSpan(
                       traceID = traceId.show,
                       spanID = span.context.spanId.show,
                       operationName = span.name,
-                      startTime = TimeUnit.MILLISECONDS.toMicros(span.start.toEpochMilli),
-                      duration = TimeUnit.MILLISECONDS.toMicros(span.end.toEpochMilli) - TimeUnit.MILLISECONDS
-                        .toMicros(span.start.toEpochMilli),
+                      startTime = startMicros,
+                      duration = durationMicros,
                       tags = jtags,
                       references = (parentRefs ++ linkRefs).sortBy(_.traceID)
                     )
