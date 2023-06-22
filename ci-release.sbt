@@ -12,7 +12,10 @@ ThisBuild / githubWorkflowBuildPreamble += WorkflowStep.Sbt(
   name = Some("Check formatting")
 )
 
-ThisBuild / githubWorkflowPublishTargetBranches := Seq(RefPredicate.Equals(Ref.Branch("master")))
+ThisBuild / githubWorkflowPublishTargetBranches := Seq(
+  RefPredicate.Equals(Ref.Branch("master")),
+  RefPredicate.StartsWith(Ref.Tag("v"))
+)
 ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
     List("ciReleaseSonatype"),
