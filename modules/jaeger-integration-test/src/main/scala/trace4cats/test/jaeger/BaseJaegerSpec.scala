@@ -112,7 +112,7 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
     val res =
       BlazeClientBuilder[IO].resource
         .use { client =>
-          exporter.use(_.exportBatch(batch)) >> IO.sleep(10.seconds) >> batch.spans
+          exporter.use(_.exportBatch(batch)) >> IO.sleep(1.second) >> batch.spans
             .map(_.context.traceId)
             .toList
             .distinct
@@ -145,7 +145,7 @@ trait BaseJaegerSpec extends AnyFlatSpec with ScalaCheckDrivenPropertyChecks wit
     val res =
       BlazeClientBuilder[IO].resource
         .use { client =>
-          completer.use(_.complete(span)) >> IO.sleep(10.seconds) >> batch.spans
+          completer.use(_.complete(span)) >> IO.sleep(1.second) >> batch.spans
             .map(_.context.traceId)
             .distinct
             .traverse { traceId =>
