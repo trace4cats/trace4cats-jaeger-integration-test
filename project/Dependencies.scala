@@ -11,7 +11,7 @@ object Dependencies {
     val circe = "0.14.5"
     val http4s = "0.23.21"
 
-    val http4sBlaze = "0.23.15"
+    val http4sBlaze = "0.23.16"
 
     val logback = "1.2.13"
 
