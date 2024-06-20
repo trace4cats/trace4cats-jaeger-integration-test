@@ -15,7 +15,7 @@ object Dependencies {
 
     val logback = "1.2.13"
 
-    val kindProjector = "0.13.2"
+    val kindProjector = "0.13.3"
     val betterMonadicFor = "0.3.1"
   }
 
